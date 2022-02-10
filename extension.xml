@@ -5,12 +5,12 @@
 <root version='3.3' release='3'>
 	<properties>
 		<name>Feature: Coins Weight</name>
-		<version>1.8</version>
+		<version>1.8.1</version>
 		<author>bmos (Wil Thieme)</author>
 		<description>Calculates coin weight by leveraging the existing inventory weight process.</description>
 	</properties>
 
-	<announcement text="https://www.fantasygrounds.com/forums/showthread.php?67228-CoreRPG-Coins-Weight\rCoin Weight v1.8:\rCalculates coin weight by leveraging the existing inventory weight process." font="emotefont" />
+	<announcement text="Coins Weight v1.8.1 FGC/FGU (2/9/22)\rbmos with FGC fork by Justin Freitas" font="emotefont" icon="scale_icon" />
 
 	<base>
 		<!-- Scripts -->
@@ -18,5 +18,7 @@
 
 		<!-- Coins Description -->
 		<string name="item_description_coins"><p>A standard coin weighs about a third of an ounce (50 to the pound).</p></string>
+
+		<icon name="scale_icon" file="graphics/icons/scale_icon.png" />
 	</base>
 </root>
