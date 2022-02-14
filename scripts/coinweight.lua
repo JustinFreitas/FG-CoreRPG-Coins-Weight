@@ -8,7 +8,7 @@ COINS_INVENTORY_ITEM_NAME = 'Coins'
 ---	This function imports the data from the second column of coins used in damned's coins weight extension.
 --	bmos also used this data structure in an early version of Total Encumbrance.
 --	Once imported, the original database nodes are deleted.
-local function upgradeDamnedCoinWeight(nodeCoinSlot)
+function upgradeDamnedCoinWeight(nodeCoinSlot)
 	local nCoinAmount = DB.getValue(nodeCoinSlot, 'amount', 0)
 	local nCoinAmount2 = DB.getValue(nodeCoinSlot, 'amountA', 0)
 	if nCoinAmount2 ~= 0 then
@@ -18,10 +18,15 @@ local function upgradeDamnedCoinWeight(nodeCoinSlot)
 end
 
 ---	This function rounds to the specified number of decimals
-local function round(number, decimals)
+function round(number, decimals)
     local n = 10^(decimals or 0)
     number = number * n
-    if number >= 0 then number = math.floor(number + 0.5) else number = math.ceil(number - 0.5) end
+    if number >= 0 then
+		number = math.floor(number + 0.5)
+	else
+		number = math.ceil(number - 0.5)
+	end
+
     return number / n
 end
 
@@ -32,7 +37,7 @@ end
 --	Otherwise, it recommends 3.
 --	This maximizes difficulty at low levels when it has the most impact.
 --	The intent is to keep the number visible on the inventory list without clipping.
-local function determineRounding(nTotalCoinsWeight)
+function determineRounding(nTotalCoinsWeight)
 	if nTotalCoinsWeight >= 100 then
 		return 0
 	elseif nTotalCoinsWeight >= 10 then
@@ -46,7 +51,7 @@ end
 
 --	This function creates the "Coins" item in a PC's inventory.
 --	It populates the name, type, and description and then returns the database node.
-local function createCoinsItem(nodeChar)
+function createCoinsItem(nodeChar)
 	local nodeCoinsItem
 	if nodeChar.getParent().getName() == 'charsheet' then
 		nodeCoinsItem = DB.createChild(nodeChar.createChild('inventorylist'))
@@ -60,7 +65,7 @@ end
 
 ---	This function looks for the "Coins" inventory item if it already exists.
 ---	Also matches "Coins (Coins Weight Extension)" for more context in name.
-local function findCoinsItem(nodeChar)
+function findCoinsItem(nodeChar)
 	for _,nodeItem in pairs(DB.getChildren(nodeChar, 'inventorylist')) do
 		local sItemName = DB.getValue(nodeItem, 'name', '')
 		if sItemName == COINS_INVENTORY_ITEM_NAME
@@ -71,7 +76,7 @@ local function findCoinsItem(nodeChar)
 end
 
 ---	This function writes the coin data to the database.
-local function writeCoinData(nodeChar, nTotalCoinsWeight, nTotalCoinsWealth)
+function writeCoinData(nodeChar, nTotalCoinsWeight, nTotalCoinsWealth)
 	local nodeCoinsItem = findCoinsItem(nodeChar)
 	if (nTotalCoinsWeight > 0 or nTotalCoinsWealth ~= 0) and not nodeCoinsItem then
 		nodeCoinsItem = createCoinsItem(nodeChar)
@@ -91,7 +96,7 @@ end
 --	It looks at each coins database subnode and checks them for the data of other extensions.
 --	Then, it checks their denominations agains those defined in aDenominations.
 --	If it doesn't find a match, it assumes a coin weight of .02.
-local function computeCoins(nodeChar)
+function computeCoins(nodeChar)
 	local nTotalCoinsWeight, nTotalCoinsWealth = 0, 0
 	for _,nodeCoinSlot in pairs(DB.getChildren(nodeChar, 'coins')) do
 		-- import data from other extensions
@@ -114,7 +119,7 @@ local function computeCoins(nodeChar)
 end
 
 --	This function is called when a coin field is changed
-local function onCoinsValueChanged(nodeCoinData)
+function onCoinsValueChanged(nodeCoinData)
 	local nodeChar = nodeCoinData.getChild('...')
 	if nodeChar.getParent().getName() == 'charsheet' then
 		computeCoins(nodeChar)
