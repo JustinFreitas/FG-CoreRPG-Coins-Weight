@@ -107,8 +107,8 @@ function computeCoins(nodeChar)
 		if sDenomination ~= '' then
 			for sDenominationName,tDenominationData in pairs(aDenominations) do
 				if string.match(sDenomination, string.lower(sDenominationName)) then
-					nTotalCoinsWealth = nTotalCoinsWealth + (nCoinAmount * tDenominationData['nValue'])
-					nTotalCoinsWeight = nTotalCoinsWeight + (nCoinAmount * tDenominationData['nWeight'])
+					nTotalCoinsWealth = nTotalCoinsWealth + (nCoinAmount * (tDenominationData['nValue'] or 0))
+					nTotalCoinsWeight = nTotalCoinsWeight + (nCoinAmount * (tDenominationData['nWeight'] or .02))
 				end
 			end
 		else
@@ -140,13 +140,7 @@ function onInit()
 		aDenominations['gp'] = { ['nValue'] = 1, ['nWeight'] = .02 }
 		aDenominations['sp'] = { ['nValue'] = .1, ['nWeight'] = .02 }
 		aDenominations['cp'] = { ['nValue'] = .01, ['nWeight'] = .02 }
-	elseif sRuleset == "2E" then
-		aDenominations['pp'] = { ['nValue'] = 10, ['nWeight'] = .02 }
-		aDenominations['gp'] = { ['nValue'] = 1, ['nWeight'] = .02 }
-		aDenominations['ep'] = { ['nValue'] = .5, ['nWeight'] = .02 }
-		aDenominations['sp'] = { ['nValue'] = .1, ['nWeight'] = .02 }
-		aDenominations['cp'] = { ['nValue'] = .01, ['nWeight'] = .02 }
-	elseif sRuleset == "5E" then
+	elseif sRuleset == "2E" or sRuleset == "5E" then
 		aDenominations['pp'] = { ['nValue'] = 10, ['nWeight'] = .02 }
 		aDenominations['gp'] = { ['nValue'] = 1, ['nWeight'] = .02 }
 		aDenominations['ep'] = { ['nValue'] = .5, ['nWeight'] = .02 }
