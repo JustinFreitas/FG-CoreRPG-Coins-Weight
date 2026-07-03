@@ -1,0 +1,12 @@
+{
+  "name": "fg-corerpg-coins-weight-tests",
+  "version": "1.0.0",
+  "description": "Unit tests for FG-CoreRPG-Coins-Weight",
+  "main": "test/run_tests.js",
+  "scripts": {
+    "test": "node test/run_tests.js"
+  },
+  "dependencies": {
+    "wasmoon": "^1.16.0"
+  }
+}
