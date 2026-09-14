@@ -1,0 +1,12 @@
+{
+  "name": "fg-corerpg-coins-weight-tests",
+  "version": "1.8.2",
+  "description": "Wasmoon unit tests for FG-CoreRPG-Coins-Weight extension",
+  "main": "test/run_tests.js",
+  "scripts": {
+    "test": "node test/run_tests.js"
+  },
+  "devDependencies": {
+    "wasmoon": "^1.16.0"
+  }
+}

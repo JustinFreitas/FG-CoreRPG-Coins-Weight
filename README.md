@@ -2,9 +2,9 @@
 This extension calculates coin weight and total monetary wealth.
 
 # Compatibility and Instructions
-This extension has been tested with [FantasyGrounds Unity](https://www.fantasygrounds.com/home/FantasyGroundsUnity.php) 4.1.13 (2022-01-05).
+This extension supports [FantasyGrounds Unity](https://www.fantasygrounds.com/home/FantasyGroundsUnity.php) and [FantasyGrounds Classic](https://www.fantasygrounds.com/home/FantasyGroundsClassic.php).
 
-It has been tested with the CoreRPG, Pathfinder 1e, D&D 3.5E, and 5E rulesets. I likely works with many/most other rulesets as well.
+It has been tested with CoreRPG, Pathfinder (PFRPG / PFRPG2), D&D 3.5E, 5E, 2E, 4E, and DFRPG rulesets. On modern FGU, it safely zeroes out the native currency encumbrance calculation to prevent double-counting.
 
 Currencies must have weight and value defined in the options menu for these calculations to work and the currency weight option needs to be enabled.
 
